@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wound Care</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;800&family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/styles.css" >
+    <script src="https://kit.fontawesome.com/4f7f4ed694.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <h1>Welcome to Wound Care</h1>
+<hr>
+<a href="{{ url_for('sample', num=3) }}">Go to Home</a>
+<hr>
+
+    <!doctype html>
+<html lang="en">
+
+<!-- Mirrored from getbootstrap.com/docs/4.3/examples/checkout/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 07 Feb 2021 13:41:27 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Checkout example · Bootstrap</title>
+
+    <link rel="canonical" href="index.html">
+
+    <!-- Bootstrap core CSS -->
+<link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+  <script>
+    function showMe (it, box) {
+      var vis = (box.checked) ? "block" : "none";
+      document.getElementById(it).style.display = vis;
+    }
+  </script>
+
+    <!-- Custom styles for this template -->
+    <link href="form-validation.css" rel="stylesheet">
+  </head>
+  <body class="bg-light">
+    <div class="container">
+  <div class="py-5 text-center">
+    <img class="d-block mx-auto mb-4" src="/static/my_logo.png" alt="" width="72" height="72">
+    <h2> WOUND ASSESSMENT</h2>
+<!--    <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>-->
+  </div>
+
+  <div class="row">
+
+
+    <div class="col-md-12 order-md-1">
+<!--      <h4 class="mb-3">Billing address</h4>-->
+      <form    action="{{ url_for('blog') }}" method="post"    class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label for="unit">UNIT</label>
+            <input type="text" class="form-control" id="unit" placeholder="" value="" required>
+            <div class="invalid-feedback">
+              Valid UNIT is required.
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="facility">FACILITY</label>
+            <input type="text" class="form-control" id="facility" placeholder="" value="" required>
+            <div class="invalid-feedback">
+              Valid FACILITY is required.
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="lastName">Date of last visit</label>
+            <input type="date" class="form-control" id="lastName" placeholder="" value="" required>
+            <div class="invalid-feedback">
+              Valid Date of last visit is required.
+            </div>
+          </div>
+        </div>
+        <hr>
+        <h4>Extent Of Tissue Loss (select those that apply)</h4>
+        <div class="row">
+          <div class="col-4">
+            <div class="d-block my-3">
+              <div class="custom-control custom-radio mb-2">
+                <input id="Cough" name="paymentMethod" type="checkbox" class="custom-control-input" required>
+                <label class="custom-control-label" for="Cough"> a. Cough</label>
+              </div>
+              <div class="custom-control custom-radio mb-3">
+                <input id="Factors" name="paymentMethod" type="checkbox" class="custom-control-input" onclick="showMe('div3', this)" required>
+                <label class="custom-control-label" for="Factors"> d. Enviromental Factors</label>
+
+                <div class="container" style="display: none" id="div3">
+                  <p class="mt-3 mb-1 text text-primary">Select all that Apply:</p>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                    <label class="form-check-label" for="inlineCheckbox1"> Allergy</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                    <label class="form-check-label" for="inlineCheckbox2"> Dust</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option2">
+                    <label class="form-check-label" for="inlineCheckbox3"> Humidity</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option2">
+                    <label class="form-check-label" for="inlineCheckbox4"> Humidity</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option2">
+                    <label class="form-check-label" for="inlineCheckbox5"> Others</label>
+                  </div>
+
+                </div>
+              </div>
+              <div class="custom-control custom-radio mb-3">
+                <input id="Chest" name="paymentMethod" type="checkbox" class="custom-control-input" required>
+                <label class="custom-control-label" for="Chest"> g. Chest X-ray</label>
+              </div>
+              <div class="custom-control custom-radio mb-3">
+                <input id="Chest pain" name="paymentMethod" type="checkbox" class="custom-control-input" required>
+                <label class="custom-control-label" for="Chest pain"> j.Chest Pain</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-4">
+            <div class="d-block my-3">
+              <div class="custom-control custom-radio mb-3">
+                <input id="Dysponia" name="paymentMethod" type="checkbox" class="custom-control-input"  required>
+                <label class="custom-control-label" for="Dysponia">b. Dysponia</label>
+              </div>
+              <div class="custom-control custom-radio mb-3">
+                <input id="Catarrh" name="paymentMethod" type="checkbox" class="custom-control-input" required>
+                <label class="custom-control-label" for="Catarrh">e. Catarrh</label>
+              </div>
+              <div class="custom-control custom-radio mb-3">
+                <input id="Nose" name="paymentMethod" type="checkbox" class="custom-control-input" required>
+                <label class="custom-control-label" for="Nose">h. Nose Pains</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="d-block my-3">
+              <div class="custom-control custom-radio mb-3">
+                <input id="Psychological" name="paymentMethod" type="checkbox" class="custom-control-input" onclick="showMe('div4', this)" required>
+                <label class="custom-control-label" for="Psychological">c. Psychological Factors</label>
+
+                <div class="container" style="display: none" id="div4">
+                  <p class="mt-3 mb-1 text text-primary">Select all that Apply:</p>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="Anger" value="option1">
+                    <label class="form-check-label" for="Anger"> Anger</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="Fear" value="option2">
+                    <label class="form-check-label" for="Fear"> Fear</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="Sadness" value="option2">
+                    <label class="form-check-label" for="Sadness"> Sadness</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="Emotional Influence" value="option2">
+                    <label class="form-check-label" for="Emotional Influence"> Emotional Influence</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="Others" value="option2">
+                    <label class="form-check-label" for="Others"> Others</label>
+                  </div>
+
+                </div>
+              </div>
+              <div class="custom-control custom-radio mb-3">
+                <input id="Cyanosis" name="paymentMethod" type="checkbox" class="custom-control-input" required>
+                <label class="custom-control-label" for="Cyanosis"> f. Cyanosis</label>
+              </div>
+              <div class="custom-control custom-radio mb-3">
+                <input id="Smoking" name="paymentMethod" type="checkbox" class="custom-control-input" required>
+                <label class="custom-control-label" for="Smoking">i. Smoking</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br>
+        <h6>2. EATING AND DRINKING</h6>
+        <div class="row">
+          <div class="col-4">
+            <div class="d-block my-3">
+              <div class="custom-control custom-radio mb-3">
+                <input id="a. Special diets (1500 calories" name="paymentMethod" type="checkbox" class="custom-control-input" required>
+                <label class="custom-control-label" for="a. Special diets (1500 calories">a. Special diets (1500 calories)</label>
+              </div>
+              <div class="custom-control custom-radio mb-3">
+                <input id="d. Quantity of Liquid/day" name="paymentMethod" type="checkbox" class="custom-control-input" required onclick="showMe('div6', this)">
+                <label class="custom-control-label" for="d. Quantity of Liquid/day"> d. Quantity of Liquid/day</label>
+                <div class="container" style="display: none" id="div6">
+                  <p class="mt-3 mb-1 text text-primary">Select all that Apply:</p>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="Normal" value="option1">
+                    <label class="form-check-label" for="Normal"> Normal</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="2,500ml" value="option2">
+                    <label class="form-check-label" for="2,500ml"> 2,500ml</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="Others" value="option2">
+                    <label class="form-check-label" for="Others"> Others</label>
+                  </div>
+
+                </div>
+              </div>
+              <div class="custom-control custom-radio mb-3">
+                <input id="g. Any Aneamia ?" name="paymentMethod" type="checkbox" class="custom-control-input" required>
+                <label class="custom-control-label" for="g. Any Aneamia ?">g. Any Aneamia ?</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="d-block my-3">
+              <div class="custom-control custom-radio mb-3">
+                <input id="b. Meals:" name="paymentMethod" type="checkbox" class="custom-control-input" required>
+                <label class="custom-control-label" for="b. Meals:">b. Meals:</label>
+              </div>
+              <div class="custom-control custom-radio mb-3">
+                <input id="e. Check Weight" name="paymentMethod" type="checkbox" class="custom-control-input" required>
+                <label class="custom-control-label" for="e. Check Weight"> e. Check Weight</label>
+              </div>
+              <div class="custom-control custom-radio mb-3">
+                <input id="h. Psychological And Enviromental Factors" name="paymentMethod" type="checkbox" class="custom-control-input" required>
+                <label class="custom-control-label" for="h. Psychological And Enviromental Factors">h. Psychological And Enviromental Factors</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="d-block my-3">
+              <div class="custom-control custom-radio mb-3">
+                <input id="c. Digestions" name="paymentMethod" type="checkbox" class="custom-control-input" onclick="showMe('div5', this)" required>
+                <label class="custom-control-label" for="c. Digestions">c. Digestions</label>
+
+                <div class="container" style="display: none" id="div5">
+                  <p class="mt-3 mb-1 text text-primary">Select all that Apply:</p>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="Flatulence" value="option1">
+                    <label class="form-check-label" for="Flatulence"> Flatulence</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="Burns" value="option2">
+                    <label class="form-check-label" for="Burns"> Burns</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="Nausea" value="option2">
+                    <label class="form-check-label" for="Nausea"> Nausea</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="Vomiting" value="option2">
+                    <label class="form-check-label" for="Vomiting"> Vomiting</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="Constipation" value="option2">
+                    <label class="form-check-label" for="Constipation"> Constipation</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="Others" value="option2">
+                    <label class="form-check-label" for="Others"> Others</label>
+                  </div>
+
+                </div>
+              </div>
+              <div class="custom-control custom-radio mb-3">
+                <input id="f. Is State Of Teeth Good" name="paymentMethod" type="checkbox" class="custom-control-input" required>
+                <label class="custom-control-label" for="f. Is State Of Teeth Good">f. Is State Of Teeth Good</label>
+              </div>
+              <div class="custom-control custom-radio mb-3">
+                <input id="i. Others" name="paymentMethod" type="checkbox" class="custom-control-input" required onclick="showMe('div7', this)">
+                <label class="custom-control-label" for="i. Others">i. Others</label>
+
+                <div class="container" style="display: none" id="div7">
+                  <div class="mb-3">
+                    <label for="address" class="mb-3 mb-1 text text-primary">Specify treatment</label>
+                    <input type="text" class="form-control" id="address"  required>
+                    <div class="invalid-feedback">
+                      Please Specify treatment.
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <br>
+        <h6><strong>3 Type of Tissue in the Wound Bed</strong></h6>
+        <div class="row">
+          <div class="col-4">
+            <div class="d-block my-3">
+              <div class="custom-control custom-radio mb-3">
+                <input id="a. Incontinence" name="paymentMethod" type="checkbox" class="custom-control-input" required onclick="showMe('Incontinence', this)">
+                <label class="custom-control-label" for="a. Incontinence">a. Incontinence</label>
+                <div class="container" style="display: none" id="Incontinence">
+                  <p class="mt-3 mb-1 text text-primary">Select all that Apply:</p>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="Daytime" value="option1">
+                    <label class="form-check-label" for="Daytime"> Daytime</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="Night" value="option2">
+                    <label class="form-check-label" for="Night">Night</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="Yes" value="option2">
+                    <label class="form-check-label" for="Yes">Yes</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="no" value="option2">
+                    <label class="form-check-label" for="no"> No</label>
+                  </div>
+
+                </div>
+              </div>
+              <div class="custom-control custom-radio mb-3">
+                <input id="d. Oedema" name="paymentMethod" type="checkbox" class="custom-control-input" required onclick="showMe('Oedema', this)">
+                <label class="custom-control-label" for="d. Oedema"> d. Oedema</label>
+
+                <div class="container" style="display: none" id="Oedema">
+                  <p class="mt-3 mb-1 text text-primary">Select all that Apply:</p>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="yes2" value="option1">
+                    <label class="form-check-label" for="yes2"> yes</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="no2" value="option2">
+                    <label class="form-check-label" for="no2"> No</label>
+                  </div>
+
+                </div>
+              </div>
+              <div class="custom-control custom-radio mb-3">
+                <input id="g. URINE" name="paymentMethod" type="checkbox" class="custom-control-input" onclick="showMe('URINE', this)" required>
+                <label class="custom-control-label" for="g. URINE">g. URINE</label>
+
+                <div class="container" style="display: none" id="URINE">
+                  <div class="mb-3">
+                    <label for="Difficulties" class="text text-primary mt-2">Difficulties</label>
+                    <textarea class="form-control" id="Difficulties"></textarea>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="d-block my-3">
+              <div class="custom-control custom-radio mb-3">
+                <input id="b. Vaginal Discharge" name="paymentMethod" type="checkbox" class="custom-control-input"  onclick="showMe('Vaginal_Discharge', this)" required>
+                <label class="custom-control-label" for="b. Vaginal Discharge">b. Vaginal Discharge</label>
+
+                <div class="container" style="display: none" id="Vaginal_Discharge">
+                  <p class="mt-3 mb-1 text text-primary">Select all that Apply:</p>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="yes3" value="option1">
+                    <label class="form-check-label" for="yes3"> yes</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="no3" value="option2">
+                    <label class="form-check-label" for="no3"> No</label>
+                  </div>
+
+                </div>
+              </div>
+              <div class="custom-control custom-radio mb-3">
+                <input id="e. Voiding Hesitancy" name="paymentMethod" type="checkbox" class="custom-control-input" required>
+                <label class="custom-control-label" for="e. Voiding Hesitancy"> e. Voiding Hesitancy</label>
+              </div>
+              <div class="custom-control custom-radio mb-3">
+                <input id="i. Stool Frequency" name="paymentMethod" type="checkbox" class="custom-control-input" required onclick="showMe('Stool_Frequency', this)">
+                <label class="custom-control-label" for="i. Stool Frequency">i. Stool Frequency</label>
+
+                <div class="container" style="display: none" id="Stool_Frequency">
+                  <div class="mb-3">
+                    <label for="Specify2" class="text text-primary mp-3">Specify
+
+                    </label>
+                    <textarea type="text" class="form-control" id="Specify2"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="d-block my-3">
+              <div class="custom-control custom-radio mb-3">
+                <input id="c. Having A Catheter" name="paymentMethod" type="checkbox" class="custom-control-input" onclick="showMe('Catheter', this)" required>
+                <label class="custom-control-label" for="c. Having A Catheter">c. Having A Catheter</label>
+
+                <div class="container" style="display: none" id="Catheter">
+                  <p class="mt-3 mb-1 text text-primary">Select all that Apply:</p>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="yes4" value="option1">
+                    <label class="form-check-label" for="yes4"> yes</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="no4" value="option2">
+                    <label class="form-check-label" for="no4"> No</label>
+                  </div>
+
+                </div>
+              </div>
+              <div class="custom-control custom-radio mb-3">
+                <input id="f. Sweating Habits" name="paymentMethod" type="checkbox" class="custom-control-input" required>
+                <label class="custom-control-label" for="f. Sweating Habits">f. Sweating Habits</label>
+              </div>
+            </div>
+          </div>
+        </div>
+          <br>
+        <hr>
+        <h6><strong>4. Wound Exudate Type (Select All That Apply)</strong></h6>
+        <div class="row">
+          <div class="col-4">
+            <div class="d-block my-3">
+              <div class="custom-control custom-radio mb-3">
+                <input id="a. Physical Support" name="paymentMethod" type="checkbox" class="custom-control-input" required>
+                <label class="custom-control-label" for="a. Physical Support">a. Physical Support</label>
+              </div>
+              <div class="custom-control custom-radio mb-3">
+                <input id="d. Pains On Walking" name="paymentMethod" type="checkbox" class="custom-control-input" required onclick="showMe('point_on_walking', this)">
+                <label class="custom-control-label" for="d. Pains On Walking"> d. Pains On Walking</label>
+
+                <div class="container" style="display: none" id="point_on_walking">
+                  <p class="mt-3 mb-1 text text-primary">Select:</p>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+                    <label class="form-check-label" for="flexRadioDefault3">
+                      Yes
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
+                    <label class="form-check-label" for="flexRadioDefault4">
+                      No
+                    </label>
+                  </div>
+
+                </div>
+              </div>
+              <div class="custom-control custom-radio mb-3">
+                <input id="Others3" name="paymentMethod" type="checkbox" class="custom-control-input" onclick="showMe('Others2', this)" required>
+                <label class="custom-control-label" for="Others3">Others</label>
+
+                <div class="container" style="display: none" id="Others2">
+                  <div class="mb-3">
+                    <label for="Specify3" class="text text-primary mb-2">Specify</label>
+                    <input type="text" class="form-control" id="Specify3">
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="d-block my-3">
+
+              <div class="custom-control custom-radio mb-3">
+                <input id="b. Diffculties Staying In Some Positions:" name="paymentMethod" type="checkbox" class="custom-control-input"  onclick="showMe('Diffculties_Staying', this)" required>
+                <label class="custom-control-label" for="b. Diffculties Staying In Some Positions:">b. Diffculties Staying In Some Positions</label>
+
+                <div class="container" style="display: none" id="Diffculties_Staying">
+                  <div class="mb-3">
+                    <label for="Which_ones" class="text text-primary mb-2">Which ones</label>
+                    <textarea type="text" class="form-control" id="Which_ones"></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="custom-control custom-radio mb-3">
+                <input id="e. Check Weight2" name="paymentMethod" type="checkbox" class="custom-control-input" required>
+                <label class="custom-control-label" for="e. Check Weight2"> e. Check Weight</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-4">
+            <div class="d-block my-3">
+              <div class="custom-control custom-radio mb-3">
+                <input id="c. Walking" name="paymentMethod" type="checkbox" class="custom-control-input" onclick="showMe('Walking2', this)" required>
+                <label class="custom-control-label" for="c. Walking">c. Walking</label>
+
+                <div class="container" style="display: none" id="Walking2">
+                  <p class="mt-3 mb-1 text text-primary">Select all that Apply:</p>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="Alone" value="option1">
+                    <label class="form-check-label" for="Alone"> Alone</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="with_help" value="option2">
+                    <label class="form-check-label" for="no4"> With Help</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-1">
+                    <input class="form-check-input" type="checkbox" id="Handicap" value="option3">
+                    <label class="form-check-label" for="no4"> Handicap</label>
+                  </div>
+
+                </div>
+              </div>
+              <div class="custom-control custom-radio mb-3">
+                <input id="Does The Patient Need A Wheel Chair Or Stretcher" name="paymentMethod" type="checkbox" class="custom-control-input" required onclick="showMe('Does_The_Patient', this)">
+                <label class="custom-control-label" for="Does The Patient Need A Wheel Chair Or Stretcher">Does The Patient Need A Wheel Chair Or Stretcher</label>
+
+                <div class="container" style="display: none" id="Does_The_Patient">
+                  <p class="mt-3 mb-1 text text-primary">Select:</p>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      Yes
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                     No
+                    </label>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <br>
+        <hr>
+        <h6><strong>6 DRESS AND UNDRESS (Select all that Apply)</strong></h6>
+        <div class="row">
+          <div class="col-4">
+            <div class="d-block my-3">
+              <div class="custom-control custom-radio mb-3">
+                <input id="a. Autonomy With Help:" name="paymentMethod" type="checkbox" class="custom-control-input" required>
+                <label class="custom-control-label" for="a. Autonomy With Help:">a. Autonomy With Help:</label>
+              </div>
+              <div class="custom-control custom-radio mb-3">
+                <input id="d. Pullovers" name="g. Insomnia" type="checkbox" class="custom-control-input"  required>
+                <label class="custom-control-label" for="d. Pullovers">d. Pullovers</label>
+
+              </div>
+              <div class="custom-control custom-radio mb-3">
+                <input id="Others7" name="g. Insomnia" type="checkbox" class="custom-control-input" onclick="showMe('Others_5', this)" required>
+                <label class="custom-control-label" for="Others7">Others</label>
+
+                <div class="container" style="display: none" id="Others_5">
+                  <p class="mt-3 mb-1 text text-primary">Specify:</p>
+                  <div class="form-check">
+                    <textarea class="form-check-input" name="Specify7" ></textarea>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="d-block my-3">
+
+              <div class="custom-control custom-radio mb-3">
+                <input id="Significant Dressing Object" name="paymentMethod" type="checkbox" class="custom-control-input" onclick="showMe('Significant_Dressing', this)" required>
+                <label class="custom-control-label" for="Significant Dressing Object"> a. Significant Dressing Object:</label>
+
+                <div class="container" style="display: none" id="Significant_Dressing">
+                  <p class="mt-3 mb-1 text text-primary">Select all that Apply:</p>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault11">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      Veil
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault12">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                      Hat
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault13">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                      Scarf
+                    </label>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-4">
+            <div class="d-block my-3">
+              <div class="custom-control custom-radio mb-3">
+                <input id="c. Dress Client Is Adated To" name="paymentMethod" type="checkbox" class="custom-control-input" onclick="showMe('client_dress', this)" required>
+                <label class="custom-control-label" for="c. Dress Client Is Adated To">c. Dress Client Is Adated To</label>
+
+                <div class="container" style="display: none" id="client_dress">
+                  <p class="mt-3 mb-1 text text-primary">which One</p>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault14">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      Yes
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault15">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                     No
+                    </label>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br>
+        <hr>
+        <h6><strong>7. MAINTAINING TEMPERATURE AT NORMAL RANGE (Select All That Apply)</strong></h6>
+        <div class="row">
+          <div class="col-4">
+            <div class="d-block my-3">
+              <div class="custom-control custom-radio mb-3">
+                <input id="a. Is The Patient Hot Or Cold" name="paymentMethod" type="checkbox" class="custom-control-input" required  onclick="showMe('Patient_Hot', this)"1>
+                <label class="custom-control-label" for="a. Is The Patient Hot Or Cold">a. Is The Patient Hot Or Cold:</label>
+
+                <div class="container" style="display: none" id="Patient_Hot">
+                  <p class="mt-3 mb-1 text text-primary">Specify:</p>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault17">
+                    <label class="form-check-label" for="flexRadioDefault17">
+                      Yes
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault18">
+                    <label class="form-check-label" for="flexRadioDefault18">
+                      No
+                    </label>
+                  </div>
+                </div>
+
+
+              </div>
+              <div class="custom-control custom-radio mb-3">
+                <input id="d. Temperatures" name="g. Insomnia" type="checkbox" class="custom-control-input"  required onclick="showMe('Temperatures', this)">
+                <label class="custom-control-label" for="d. Temperatures">d. Temperatures</label>
+
+                <div class="container" style="display: none" id="Temperatures">
+                  <p class="mt-3 mb-1 text text-primary">Precise:</p>
+                  <div class="form-check">
+                    <textarea class="form-check-input" name="Temperatures" ></textarea>
+                  </div>
+                </div>
+                <br><br>
+              </div>
+              <div class="custom-control custom-radio mb-3">
+                <input id="Others8" name="g. Insomnia" type="checkbox" class="custom-control-input" onclick="showMe('div10', this)" required>
+                <label class="custom-control-label" for="Others8">Others</label>
+
+                <div class="container" style="display: none" id="div10">
+                  <p class="mt-3 mb-1 text text-primary">Specify:</p>
+                  <div class="form-check">
+                    <textarea class="form-check-input" name="Specify8" ></textarea>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="d-block my-3">
+
+              <div class="custom-control custom-radio mb-3">
+                <input id="b. Emotional Influence:" name="paymentMethod" type="checkbox" class="custom-control-input" onclick="showMe('emotional_influence', this)" required>
+                <label class="custom-control-label" for="b. Emotional Influence:"> b. Emotional Influence:</label>
+
+                <div class="container" style="display: none" id="emotional_influence">
+                  <p class="mt-3 mb-1 text text-primary">Select all that Apply:</p>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault19">
+                    <label class="form-check-label" for="flexRadioDefault19">
+                      Hot Flush
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault20">
+                    <label class="form-check-label" for="flexRadioDefault20">
+                      Clammy Palms
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault21">
+                    <label class="form-check-label" for="flexRadioDefault21">
+                      Sweating
+                    </label>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="custom-control custom-radio mb-3">
+                <input id="e. Habit To Feel" name="paymentMethod" type="checkbox" class="custom-control-input" onclick="showMe('habit_to_feel', this)" required>
+                <label class="custom-control-label" for="e. Habit To Feel"> e. Habit To Feel</label>
+
+                <div class="container" style="display: none" id="habit_to_feel">
+                  <p class="mt-3 mb-1 text text-primary">Select all that Apply:</p>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault22">
+                    <label class="form-check-label" for="flexRadioDefault22">
+                      Hot
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault23">
+                    <label class="form-check-label" for="flexRadioDefault23">
+                     Cold
+                    </label>
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-4">
+            <div class="d-block my-3">
+              <div class="custom-control custom-radio mb-3">
+                <input id="c. Means Of Maintaining Normal Temperatures At Home" name="paymentMethod" type="checkbox" class="custom-control-input" onclick="showMe('means_maintaining', this)" required>
+                <label class="custom-control-label" for="c. Means Of Maintaining Normal Temperatures At Home">c. Means Of Maintaining Normal Temperatures At Home</label>
+
+                <div class="container" style="display: none" id="means_maintaining">
+                  <p class="mt-3 mb-1 text text-primary">Select All that apply</p>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Ventilation
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1" >
+                    <label class="form-check-label" for="flexCheckDefault1">
+                      Window
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2"
+                    <label class="form-check-label" for="flexCheckDefault2">
+                      Door
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3"
+                    <label class="form-check-label" for="flexCheckDefault3">
+                      Air Conditioner
+                    </label>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br>
+        <br>
+        <hr>
+        <h6><strong>8 BEING CLEAN AND TAKING CARE OF OWN DRESSES</strong></h6>
+        <div class="row">
+          <div class="col-4">
+            <div class="d-block my-3">
+              <div class="custom-control custom-radio mb-3">
+                <input id="a. State Of Nails And Hairs Clean" name="paymentMethod" type="checkbox" class="custom-control-input" required  onclick="showMe('state_of_nails', this)"1>
+                <label class="custom-control-label" for="a. State Of Nails And Hairs Clean">a. State Of Nails And Hairs Clean</label>
+
+                <div class="container" style="display: none" id="state_of_nails">
+                  <p class="mt-3 mb-1 text text-primary">Pick:</p>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault25">
+                    <label class="form-check-label" for="flexRadioDefault25">
+                      Yes
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault26">
+                    <label class="form-check-label" for="flexRadioDefault26">
+                      No
+                    </label>
+                  </div>
+                </div>
+
+
+              </div>
+              <div class="custom-control custom-radio mb-3">
+                <input id="d. Skin Ulcers" name="g. Insomnia" type="checkbox" class="custom-control-input"  required onclick="showMe('skin_ulcers', this)">
+                <label class="custom-control-label" for="d. Skin Ulcers">d. Skin Ulcers</label>
+
+                <div class="container" style="display: none" id="skin_ulcers">
+                  <p class="mt-3 mb-1 text text-primary">Site:</p>
+                  <div class="form-check">
+                    <textarea class="form-check-input" name="Site" ></textarea>
+                  </div>
+                </div>
+                <br><br>
+              </div>
+              <div class="custom-control custom-radio mb-3">
+                <input id="Others9" name="g. Insomnia" type="checkbox" class="custom-control-input" onclick="showMe('div13', this)" required>
+                <label class="custom-control-label" for="Others9">Others</label>
+
+                <div class="container" style="display: none" id="div13">
+                  <p class="mt-3 mb-1 text text-primary">Specify:</p>
+                  <div class="form-check">
+                    <textarea class="form-check-input" name="Specify9" ></textarea>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="d-block my-3">
+
+              <div class="custom-control custom-radio mb-3">
+                <input id="b. Personal Hygiene" name="paymentMethod" type="checkbox" class="custom-control-input" onclick="showMe('Personal_Hygiene', this)" required>
+                <label class="custom-control-label" for="b. Personal Hygiene"> b. Personal Hygiene</label>
+
+                <div class="container" style="display: none" id="Personal_Hygiene">
+                  <p class="mt-3 mb-1 text text-primary">Select all that Apply:</p>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault27">
+                    <label class="form-check-label" for="flexRadioDefault27">
+                     With Help
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault28">
+                    <label class="form-check-label" for="flexRadioDefault28">
+                      Alone
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault29">
+                    <label class="form-check-label" for="flexRadioDefault29">
+                      Bathing
+                    </label>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="custom-control custom-radio mb-3">
+                <input id="e. State Of Skin" name="paymentMethod" type="checkbox" class="custom-control-input" onclick="showMe('state_of_skin', this)" required>
+                <label class="custom-control-label" for="e. State Of Skin"> e. State Of Skin</label>
+
+                <div class="container" style="display: none" id="state_of_skin">
+                  <p class="mt-3 mb-1 text text-primary">Select all that Apply:</p>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault30">
+                    <label class="form-check-label" for="flexRadioDefault30">
+                      Intact
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault31">
+                    <label class="form-check-label" for="flexRadioDefault31">
+                      Lesions
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault32">
+                    <label class="form-check-label" for="flexRadioDefault31">
+                      Coloration
+                    </label>
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-4">
+            <div class="d-block my-3">
+              <div class="custom-control custom-radio mb-3">
+                <input id="c. Type Of Skin" name="paymentMethod" type="checkbox" class="custom-control-input" onclick="showMe('type_of_skin', this)" required>
+                <label class="custom-control-label" for="c. Type Of Skin">c. Type Of Skin</label>
+
+                <div class="container" style="display: none" id="type_of_skin">
+                  <p class="mt-3 mb-1 text text-primary">Select All that apply</p>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault33">
+                    <label class="form-check-label" for="flexRadioDefault33">
+                      Dry
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault34">
+                    <label class="form-check-label" for="flexRadioDefault34">
+                      Fatty
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault35">
+                    <label class="form-check-label" for="flexRadioDefault35">
+                      Normal
+                    </label>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+        <hr>
+        <br>
+        <br>
+
+
+        <hr class="mb-4">
+        <button class="btn btn-primary btn-lg btn-block" type="submit"   action="{{ url_for('blog') }}" method="post"    class="needs-validation" novalidate>Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2017-2019 Company Name</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="#">Privacy</a></li>
+      <li class="list-inline-item"><a href="#">Terms</a></li>
+      <li class="list-inline-item"><a href="#">Support</a></li>
+    </ul>
+  </footer>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="https://getbootstrap.com/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+        <script src="form-validation.js"></script></body>
+
+<!-- Mirrored from getbootstrap.com/docs/4.3/examples/checkout/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 07 Feb 2021 13:41:29 GMT -->
+</html>
+
+
+
+    </div>
+</body>
+<footer>
+    <p>Copyright: {{ year }} Built by Greatness @Gee</p>
+</footer>
+</body>
+</html>
