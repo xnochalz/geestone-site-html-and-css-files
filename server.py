@@ -1,4 +1,12 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for, flash
+from flask_bootstrap import Bootstrap
+from flask_ckeditor import CKEditor
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import relationship
+from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
+from datetime import date
+from posts import Registerpost
+import os
 import random
 import datetime
 import requests
@@ -6,12 +14,70 @@ import requests
 
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+ckeditor = CKEditor(app)
+Bootstrap(app)
 
+##CONNECT TO DB
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL",  "sqlite:///blog.db")
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
+##CONFIGURE TABLES
+
+class NewPatient(db.Model):
+    __tablename__ = "blog_posts"
+    id = db.Column(db.Integer, primary_key=True)
+    # Create Foreign Key, "users.id" the users refers to the tablename of User.
+    author_id = db.Column(db.Integer)
+    # Create reference to the User object, the "posts" refers to the posts protperty in the User class.
+    # author = relationship("User", back_populates="posts")
+    title = db.Column(db.String(250), unique=True, nullable=False)
+    patient_name = db.Column(db.String(250), nullable=False)
+    patient_age = db.Column(db.Interger(250), nullable=False)
+    date = db.Column(db.String(250), nullable=False)
+    body = db.Column(db.Text, nullable=False)
+    img_url = db.Column(db.String(250), nullable=False)
+    #***************Parent Relationship*************#
+    # comments = relationship("Comment", back_populates="parent_post")
+
+db.create_all()
+
+
+# Create the User Table
+class User(UserMixin, db.Model):
+    __tablename__ = "users"
+    id = db.Column(db.Integer, primary_key=True)
+    patient_contact = db.Column(db.Integer, primary_key=True)
+    patient_age = db.Column(db.Integer, primary_key=True)
+    patient_name = db.Column(db.String(100), unique=True)
+    facility = db.Column(db.String(100), unique=True)
+    unit = db.Column(db.String(100), unique=True)
+    email = db.Column(db.String(100), unique=True)
+    password = db.Column(db.String(100))
+    name = db.Column(db.String(100))
+
+    #This will act like a List of NewPatient objects attached to each User.
+    #The "author" refers to the author property in the NewPatient class.
+    posts = relationship("NewPatient", back_populates="author")
+
+    #*******Add parent relationship*******#
+    #"comment_author" refers to the comment_author property in the Comment class.
+    comments = relationship("Comment", back_populates="comment_author")
+
+# Create all the tables in the database
+db.create_all()
 
 
 @app.route('/')
 def home():
     return render_template('index.html')
+
+
+@app.route('/')
+def get_all_patients():
+    posts = NewPatient.query.all()
+    return render_template("index.html", all_posts=posts, current_user=current_user)
 
 
 @app.route('/sample')
@@ -52,6 +118,54 @@ def dropdown():
                         ' Cyanosis', ' Psychological_Factors', ' Smoking',
                         'Nose Pains', 'Chest X-ray', 'Chest Pain']
     return render_template('woundcare.html', colours=extent_of_tissue)
+
+
+def add_new_patient():
+    post = Registerpost()
+    if post.validate_on_submit():
+        new_post = NewPatient(
+            title=post.title.data,
+            patient_name=post.patient_name.data,
+            patient_age=post.patient_age.data,
+            unit=post.unit.data,
+            facility=post.facility.data,
+            body=post.body.data,
+            img_url=post.img_url.data,
+            author=current_user,
+            date=date.today().strftime("%B %d, %Y")
+        )
+        db.session.add(new_post)
+        db.session.commit()
+        return redirect(url_for("get_all_patients"))
+    return render_template("make-post.html", post=post, current_user=current_user)
+
+
+@app.route("/edit-post/<int:patient_id>", methods=["GET", "POST"])
+def edit_patient(patient_id):
+    post = NewPatient.query.get(patient_id)
+    edit_patient = Registerpost(
+        patient_name=post.patient_name,
+        patient_age=post.patient_age,
+        unit=post.unit,
+        facility=post.facility,
+        img_url=post.img_url,
+        author=post.author,
+        body=post.body
+    )
+    if edit_patient.validate_on_submit():
+        post.title = edit_patient.title.data
+        post.subtitle = edit_patient.subtitle.data
+        post.img_url = edit_patient.img_url.data
+        post.author = edit_patient.author.data
+        post.body = edit_patient.body.data
+        db.session.commit()
+        return redirect(url_for("show_patient", patient_id=post.id))
+
+    return render_template("make-post.html", form=edit_patient, is_edit=True, current_user=current_user)
+
+
+
+
 
 
 
