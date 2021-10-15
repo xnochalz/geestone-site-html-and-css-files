@@ -4,8 +4,9 @@ from flask_ckeditor import CKEditor
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
+from forms import RegisterForm, CommentForm, CreatePostForm, LoginForm
 from datetime import date
-from posts import Registerpost
+
 import os
 import random
 import datetime
@@ -26,7 +27,7 @@ db = SQLAlchemy(app)
 ##CONFIGURE TABLES
 
 class NewPatient(db.Model):
-    __tablename__ = "blog_posts"
+    __tablename__ = "patients"
     id = db.Column(db.Integer, primary_key=True)
     # Create Foreign Key, "users.id" the users refers to the tablename of User.
     author_id = db.Column(db.Integer)
@@ -34,7 +35,7 @@ class NewPatient(db.Model):
     # author = relationship("User", back_populates="posts")
     title = db.Column(db.String(250), unique=True, nullable=False)
     patient_name = db.Column(db.String(250), nullable=False)
-    patient_age = db.Column(db.Interger(250), nullable=False)
+    patient_age = db.Column(db.String(250), nullable=False)
     date = db.Column(db.String(250), nullable=False)
     body = db.Column(db.Text, nullable=False)
     img_url = db.Column(db.String(250), nullable=False)
@@ -121,7 +122,7 @@ def dropdown():
 
 
 def add_new_patient():
-    post = Registerpost()
+    post = RegisterForm()
     if post.validate_on_submit():
         new_post = NewPatient(
             title=post.title.data,
@@ -143,7 +144,7 @@ def add_new_patient():
 @app.route("/edit-post/<int:patient_id>", methods=["GET", "POST"])
 def edit_patient(patient_id):
     post = NewPatient.query.get(patient_id)
-    edit_patient = Registerpost(
+    edit_patient = RegisterForm(
         patient_name=post.patient_name,
         patient_age=post.patient_age,
         unit=post.unit,
@@ -162,6 +163,30 @@ def edit_patient(patient_id):
         return redirect(url_for("show_patient", patient_id=post.id))
 
     return render_template("make-post.html", form=edit_patient, is_edit=True, current_user=current_user)
+
+
+
+
+# @app.route("/post/<int:post_id>", methods=["GET", "POST"])
+# def show_patient(post_id):
+#     form = CommentForm()
+#     requested_post = NewPatient.query.get(post_id)
+#
+#     if form.validate_on_submit():
+#         if not current_user.is_authenticated:
+#             flash("You need to login or register to comment.")
+#             return redirect(url_for("login"))
+#
+#         new_comment = Comment(
+#             text=form.comment_text.data,
+#             comment_author=current_user,
+#             parent_post=requested_post
+#         )
+#         db.session.add(new_comment)
+#         db.session.commit()
+#
+#     return render_template("post.html", post=requested_post, form=form, current_user=current_user)
+
 
 
 
