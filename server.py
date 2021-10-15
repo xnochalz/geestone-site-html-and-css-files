@@ -5,8 +5,11 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from forms import RegisterForm, CommentForm, CreatePostForm, LoginForm
+from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import date
-
+from flask_gravatar import Gravatar
+from functools import wraps
+from flask import abort
 import os
 import random
 import datetime
@@ -138,7 +141,7 @@ def add_new_patient():
         db.session.add(new_post)
         db.session.commit()
         return redirect(url_for("get_all_patients"))
-    return render_template("make-post.html", post=post, current_user=current_user)
+    return render_template("create_patient.html", post=post, current_user=current_user)
 
 
 @app.route("/edit-post/<int:patient_id>", methods=["GET", "POST"])
