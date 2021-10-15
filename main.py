@@ -74,6 +74,22 @@ class User(UserMixin, db.Model):
 db.create_all()
 
 
+#creates a a table called comments
+class Comment(db.Model):
+    __tablename__ = "comments"
+    id = db.Column(db.Integer, primary_key=True)
+    # *******Add child relationship*******#
+    # "users.id" The users refers to the tablename of the Users class.
+    author_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    #"comments" refers to the comments property in the User class.
+    comment_author = relationship("User", back_populates="comments")
+    # ***************Child Relationship*************#
+    post_id = db.Column(db.Integer, db.ForeignKey("blog_posts.id"))
+    parent_post = relationship("BlogPost", back_populates="comments")
+    text = db.Column(db.Text, nullable=False)
+
+
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -117,7 +133,7 @@ def woundcare():
 
     return render_template('woundcare.html')
 
-@app.route('/', methods=['GET'])
+@app.route('/dropdown', methods=['GET'])
 def dropdown():
     extent_of_tissue = ['cough', 'Enviromental_Factors', 'Dysponia', 'Catarrh'
                         ' Cyanosis', ' Psychological_Factors', ' Smoking',
@@ -171,25 +187,25 @@ def edit_patient(patient_id):
 
 
 
-# @app.route("/post/<int:post_id>", methods=["GET", "POST"])
-# def show_patient(post_id):
-#     form = CommentForm()
-#     requested_post = NewPatient.query.get(post_id)
-#
-#     if form.validate_on_submit():
-#         if not current_user.is_authenticated:
-#             flash("You need to login or register to comment.")
-#             return redirect(url_for("login"))
-#
-#         new_comment = Comment(
-#             text=form.comment_text.data,
-#             comment_author=current_user,
-#             parent_post=requested_post
-#         )
-#         db.session.add(new_comment)
-#         db.session.commit()
-#
-#     return render_template("post.html", post=requested_post, form=form, current_user=current_user)
+@app.route("/post/<int:post_id>", methods=["GET", "POST"])
+def show_patient(post_id):
+    form = CommentForm()
+    requested_post = NewPatient.query.get(post_id)
+
+    if form.validate_on_submit():
+        if not current_user.is_authenticated:
+            flash("You need to login or register to comment.")
+            return redirect(url_for("login"))
+
+        new_comment = Comment(
+            text=form.comment_text.data,
+            comment_author=current_user,
+            parent_post=requested_post
+        )
+        db.session.add(new_comment)
+        db.session.commit()
+
+    return render_template("post.html", post=requested_post, form=form, current_user=current_user)
 
 
 
