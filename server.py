@@ -120,7 +120,7 @@ def dropdown():
                         'Nose Pains', 'Chest X-ray', 'Chest Pain']
     return render_template('woundcare.html', colours=extent_of_tissue)
 
-
+@app.route("/new-patient", methods=["GET", "POST"])
 def add_new_patient():
     post = RegisterForm()
     if post.validate_on_submit():
@@ -162,7 +162,7 @@ def edit_patient(patient_id):
         db.session.commit()
         return redirect(url_for("show_patient", patient_id=post.id))
 
-    return render_template("make-post.html", form=edit_patient, is_edit=True, current_user=current_user)
+    return render_template("create_patient.html", form=edit_patient, is_edit=True, current_user=current_user)
 
 
 
