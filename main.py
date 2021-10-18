@@ -273,12 +273,18 @@ def login():
     return render_template("login.html", form=form, current_user=current_user)
 
 
+@app.route("/about")
+def about():
+    return render_template("about.html", current_user=current_user)
 
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('get_all_patients'))
 
-
-
-
-
+@app.route("/contact")
+def contact():
+    return render_template("contact.html", current_user=current_user)
 
 
 if __name__ == "__main__":
