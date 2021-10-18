@@ -12,6 +12,8 @@ class CreatePostForm(FlaskForm):
     subtitle = StringField("Subtitle", validators=[DataRequired()])
     img_url = StringField("Blog Image URL", validators=[DataRequired(), URL()])
     body = CKEditorField("Blog Content", validators=[DataRequired()])
+    patient_name = StringField("patient_name", validators=[DataRequired()])
+    patient_age = IntegerField("patient_age", validators=[DataRequired()])
     submit = SubmitField("Submit Post")
 
 

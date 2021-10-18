@@ -98,7 +98,7 @@ def home():
 @app.route('/')
 def get_all_patients():
     posts = NewPatient.query.all()
-    return render_template("index.html", all_posts=posts, current_user=current_user)
+    return render_template("home.html", all_posts=posts, current_user=current_user)
 
 
 @app.route('/sample')
@@ -164,7 +164,7 @@ def add_new_patient():
 @app.route("/edit-post/<int:patient_id>", methods=["GET", "POST"])
 def edit_patient(patient_id):
     post = NewPatient.query.get(patient_id)
-    edit_patient = RegisterForm(
+    edit_patient = CreatePostForm(
         patient_name=post.patient_name,
         patient_age=post.patient_age,
         unit=post.unit,
@@ -206,6 +206,73 @@ def show_patient(post_id):
         db.session.commit()
 
     return render_template("post.html", post=requested_post, form=form, current_user=current_user)
+
+
+
+# Register new users into the User database
+@app.route('/register', methods=["GET", "POST"])
+def register():
+    form = RegisterForm()
+    if form.validate_on_submit():
+
+        # If user's email already exists
+        if User.query.filter_by(email=form.email.data).first():
+            # Send flash messsage
+            flash("You've already signed up with that email, log in instead!")
+            # Redirect to /login route.
+            return redirect(url_for('login'))
+
+        hash_and_salted_password = generate_password_hash(
+            form.password.data,
+            method='pbkdf2:sha256',
+            salt_length=8
+        )
+        new_user = User(
+            email=form.email.data,
+            name=form.name.data,
+            password=hash_and_salted_password,
+            facility=form.facility.data,
+        )
+        db.session.add(new_user)
+        db.session.commit()
+
+        #This line will authenticate the user with Flask-Login
+        login_user(new_user)
+        return redirect(url_for("get_all_patients"))
+
+    return render_template("register.html", form=form)
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+
+
+@app.route('/login', methods=["GET", "POST"])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        email = form.email.data
+        password = form.password.data
+
+        user = User.query.filter_by(email=email).first()
+        # Email doesn't exist
+        if not user:
+            flash("That email does not exist, please try again.")
+            return redirect(url_for('login'))
+        # Password incorrect
+        elif not check_password_hash(user.password, password):
+            flash('Password incorrect, please try again.')
+            return redirect(url_for('login'))
+        else:
+            login_user(user)
+            return redirect(url_for('get_all_patients'))
+    return render_template("login.html", form=form, current_user=current_user)
+
+
 
 
 
